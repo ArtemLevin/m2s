@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Архитектура — Production Deployment Guide</title>
+  <meta name="description" content="Документация этапа Архитектура: Параллельный трек роста до Senior/Lead: архитектурные паттерны, messaging, данные, reliability и event-driven подход." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle><span aria-hidden="true">☰</span> Навигация</button>
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand"><div class="brand__mark" aria-hidden="true">PD</div><div><strong>Production Deployment</strong><span>Guide v1.0</span></div></div>
+      <nav class="sidebar__nav"><p class="nav-label">Этапы</p><a href="course-overview.html">Обзор курса</a><a href="index.html">Stage 2 · Deployment</a><a href="stage-3-ci-cd.html">Stage 3 · CI/CD</a><a href="stage-4-observability.html">Stage 4 · Observability</a><a href="stage-5-cloud.html">Stage 5 · Cloud</a><a href="stage-6-kubernetes.html">Stage 6 · Kubernetes</a><a href="stage-7-architecture.html">Stage 7 · Architecture</a></nav>
+      <div class="sidebar__progress" aria-label="Прогресс курса"><div class="progress-meta"><span>Stage 7</span><span>6–12 месяцев параллельно</span></div><div class="progress-bar"><span style="width:64%"></span></div><p>Переход Middle → Senior через production-практику.</p></div>
+    </aside>
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Roadmap</a><span>/</span><span>Stage 7</span><span>/</span><span>Архитектура</span></nav>
+      <header class="doc-hero" id="overview"><span class="badge badge--red">Stage 7</span><h1>Архитектура</h1><p class="lead">Параллельный трек роста до Senior/Lead: архитектурные паттерны, messaging, данные, reliability и event-driven подход.</p><div class="hero-grid" aria-label="Ключевые параметры"><article class="metric-card"><span>Длительность</span><strong>6–12 месяцев параллельно</strong></article><article class="metric-card"><span>Формат</span><strong>Практика + runbooks</strong></article><article class="metric-card"><span>Выход</span><strong>Production capability</strong></article></div></header>
+      <section class="doc-section" id="module-1">
+        <div class="section-heading"><span class="badge badge--red">Stage 7</span><h2>Architecture Patterns</h2><p>Monolith, Modular Monolith и Microservices: критерии выбора, границы модулей и стоимость распределённости.</p></div>
+        <div class="card-grid"><article class="card"><h3>ADR для ключевых решений</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Bounded contexts описаны</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Нет микросервисов без причины</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-2">
+        <div class="section-heading"><span class="badge badge--red">Stage 7</span><h2>Messaging</h2><p>RabbitMQ и Kafka: очереди, topics, consumers, retries, dead-letter queues и идемпотентность.</p></div>
+        <div class="card-grid"><article class="card"><h3>Outbox pattern изучен</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>DLQ настроена</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Consumer идемпотентен</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-3">
+        <div class="section-heading"><span class="badge badge--red">Stage 7</span><h2>Data</h2><p>PostgreSQL, Redis и Elasticsearch: роли систем хранения, консистентность и эксплуатационные компромиссы.</p></div>
+        <div class="card-grid"><article class="card"><h3>Понимание ownership данных</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Cache invalidation strategy</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Search отделён от source of truth</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-4">
+        <div class="section-heading"><span class="badge badge--red">Stage 7</span><h2>Reliability</h2><p>Circuit breaker, retry, rate limiting, bulkhead, CAP theorem и degradation strategies.</p></div>
+        <div class="card-grid"><article class="card"><h3>Retry с backoff/jitter</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Rate limits на edge/API</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Failure mode описан для зависимостей</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-5">
+        <div class="section-heading"><span class="badge badge--red">Stage 7</span><h2>Event Driven Architecture</h2><p>Проектируйте события как контракт: schema evolution, ordering, replay и observability.</p></div>
+        <div class="card-grid"><article class="card"><h3>События версионируются</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Есть traceability событий</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Replay безопасен</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+
+      <section class="doc-section" id="deep-dive">
+        <div class="section-heading"><span class="badge badge--red">Практический разбор</span><h2>Архитектурное мышление через решения и компромиссы</h2><p>Архитектура — это не набор модных паттернов, а систематический выбор trade-off. Каждое важное решение фиксируйте в ADR: контекст, варианты, выбранное решение, последствия и критерии пересмотра.</p></div>
+        <table class="doc-table"><thead><tr><th>Тема</th><th>Вопрос для инженера</th><th>Артефакт</th></tr></thead><tbody><tr><td>Modular Monolith</td><td>Где проходят границы модулей и кто владеет данными?</td><td>Context map и правила зависимостей</td></tr><tr><td>Microservices</td><td>Какая независимость deployment/scale оправдывает распределённость?</td><td>Service ownership и SLO</td></tr><tr><td>Messaging</td><td>Что произойдёт при повторной доставке события?</td><td>Idempotency key и DLQ policy</td></tr><tr><td>Reliability</td><td>Как система деградирует при падении Redis, DB или внешнего API?</td><td>Failure-mode table</td></tr><tr><td>Data</td><td>Какая система является source of truth?</td><td>Data ownership document</td></tr></tbody></table>
+        <div class="code-window" data-code-block><div class="code-window__bar"><span>adr-template.md</span><button type="button" data-copy>Copy</button></div><pre><code># ADR-001: Use Modular Monolith first
+
+## Context
+Команда одна, доменная модель быстро меняется, независимый scaling пока не требуется.
+
+## Decision
+Стартуем с modular monolith и строгими границами модулей.
+
+## Consequences
+Проще транзакции и observability, но нужно дисциплинированно контролировать зависимости.</code></pre></div>
+      </section>
+
+      <section class="doc-section" id="deliverables"><div class="section-heading"><span class="badge badge--green">Готовность</span><h2>Definition of Done</h2><p>Этап считается закрытым, когда выполнены практические критерии и результат можно показать в репозитории или инфраструктуре.</p></div><div class="checklist"><label><input type="checkbox"> ADR ведутся регулярно</label><label><input type="checkbox"> Messaging внедрён осознанно</label><label><input type="checkbox"> Reliability patterns покрывают критичные зависимости</label><label><input type="checkbox"> Event contracts документированы</label></div></section>
+      <footer class="doc-footer"><p><a href="index.html">← Вернуться к Production Deployment</a></p></footer>
+    </main>
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">Architecture Patterns</a><a href="#module-2">Messaging</a><a href="#module-3">Data</a><a href="#module-4">Reliability</a><a href="#module-5">Event Driven Architecture</a><a href="#deep-dive">Практический разбор</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
+  </div>
+  <div class="overlay" data-overlay hidden></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

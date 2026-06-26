@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kubernetes — Production Deployment Guide</title>
+  <meta name="description" content="Документация этапа Kubernetes: После уверенного Docker/VPS/CI/CD переходите к оркестрации, Helm, production primitives и GitOps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle><span aria-hidden="true">☰</span> Навигация</button>
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand"><div class="brand__mark" aria-hidden="true">PD</div><div><strong>Production Deployment</strong><span>Guide v1.0</span></div></div>
+      <nav class="sidebar__nav"><p class="nav-label">Этапы</p><a href="course-overview.html">Обзор курса</a><a href="index.html">Stage 2 · Deployment</a><a href="stage-3-ci-cd.html">Stage 3 · CI/CD</a><a href="stage-4-observability.html">Stage 4 · Observability</a><a href="stage-5-cloud.html">Stage 5 · Cloud</a><a href="stage-6-kubernetes.html">Stage 6 · Kubernetes</a><a href="stage-7-architecture.html">Stage 7 · Architecture</a></nav>
+      <div class="sidebar__progress" aria-label="Прогресс курса"><div class="progress-meta"><span>Stage 6</span><span>6–8 недель</span></div><div class="progress-bar"><span style="width:64%"></span></div><p>Переход Middle → Senior через production-практику.</p></div>
+    </aside>
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Roadmap</a><span>/</span><span>Stage 6</span><span>/</span><span>Kubernetes</span></nav>
+      <header class="doc-hero" id="overview"><span class="badge badge--amber">Stage 6</span><h1>Kubernetes</h1><p class="lead">После уверенного Docker/VPS/CI/CD переходите к оркестрации, Helm, production primitives и GitOps.</p><div class="hero-grid" aria-label="Ключевые параметры"><article class="metric-card"><span>Длительность</span><strong>6–8 недель</strong></article><article class="metric-card"><span>Формат</span><strong>Практика + runbooks</strong></article><article class="metric-card"><span>Выход</span><strong>Production capability</strong></article></div></header>
+      <section class="doc-section" id="module-1">
+        <div class="section-heading"><span class="badge badge--amber">Stage 6</span><h2>6.1 Kubernetes Core</h2><p>Pod, Deployment, Service, ConfigMap, Secret, Ingress и Namespace для FastAPI, PostgreSQL и Redis.</p></div>
+        <div class="card-grid"><article class="card"><h3>Deployment с rolling update</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Ingress ведёт на API</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>ConfigMap/Secret отделены от image</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-2">
+        <div class="section-heading"><span class="badge badge--amber">Stage 6</span><h2>6.2 Helm</h2><p>Создайте собственный chart с values для dev/staging/production.</p></div>
+        <div class="card-grid"><article class="card"><h3>Templates не дублируются</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Values документированы</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Chart устанавливается одной командой</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-3">
+        <div class="section-heading"><span class="badge badge--amber">Stage 6</span><h2>6.3 Production Kubernetes</h2><p>HPA, resource limits, probes, affinity, taints и tolerations.</p></div>
+        <div class="card-grid"><article class="card"><h3>Readiness/liveness probes</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Requests/limits на каждый container</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>HPA реагирует на нагрузку</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-4">
+        <div class="section-heading"><span class="badge badge--amber">Stage 6</span><h2>6.4 GitOps</h2><p>ArgoCD или FluxCD полностью автоматизируют деплой из Git.</p></div>
+        <div class="card-grid"><article class="card"><h3>Git — source of truth</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Drift виден в UI</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Rollback через git revert</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+
+      <section class="doc-section" id="deep-dive">
+        <div class="section-heading"><span class="badge badge--amber">Практический разбор</span><h2>Что значит production-ready workload</h2><p>Kubernetes-проект считается зрелым не когда Pod запустился, а когда rollout управляем, ресурсы ограничены, конфигурация отделена от image, а Git отражает желаемое состояние cluster.</p></div>
+        <div class="code-window" data-code-block><div class="code-window__bar"><span>deployment.yaml</span><button type="button" data-copy>Copy</button></div><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: api
+          image: registry.example.com/app:sha
+          readinessProbe:
+            httpGet: { path: /health, port: 8000 }
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits: { cpu: "500m", memory: "512Mi" }</code></pre></div>
+        <div class="card-grid"><article class="card"><h3>Probes</h3><p>Readiness отвечает за трафик, liveness — за восстановление зависшего процесса, startup probe помогает долгому старту без ложных рестартов.</p></article><article class="card"><h3>Limits</h3><p>Requests нужны scheduler, limits защищают cluster от runaway-процессов. Начинайте с измерений, а не случайных чисел.</p></article><article class="card"><h3>Helm values</h3><p>Все отличия окружений должны быть в values: replica count, image tag, ingress host, resource profile и feature flags.</p></article><article class="card"><h3>GitOps</h3><p>ArgoCD/Flux сравнивает Git и cluster, показывает drift и позволяет откатываться через revert коммита.</p></article></div>
+      </section>
+
+      <section class="doc-section" id="deliverables"><div class="section-heading"><span class="badge badge--green">Готовность</span><h2>Definition of Done</h2><p>Этап считается закрытым, когда выполнены практические критерии и результат можно показать в репозитории или инфраструктуре.</p></div><div class="checklist"><label><input type="checkbox"> FastAPI/PostgreSQL/Redis запущены в cluster</label><label><input type="checkbox"> Helm chart готов</label><label><input type="checkbox"> Probes и limits настроены</label><label><input type="checkbox"> GitOps выполняет автоматический deploy</label></div></section>
+      <footer class="doc-footer"><p><a href="index.html">← Вернуться к Production Deployment</a></p></footer>
+    </main>
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">6.1 Kubernetes Core</a><a href="#module-2">6.2 Helm</a><a href="#module-3">6.3 Production Kubernetes</a><a href="#module-4">6.4 GitOps</a><a href="#deep-dive">Практический разбор</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
+  </div>
+  <div class="overlay" data-overlay hidden></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
