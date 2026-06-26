@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Observability — Production Deployment Guide</title>
+  <meta name="description" content="Документация этапа Observability: Добавьте структурированные логи, метрики, dashboards и distributed tracing, чтобы сервис можно было диагностировать как production-систему." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle><span aria-hidden="true">☰</span> Навигация</button>
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand"><div class="brand__mark" aria-hidden="true">PD</div><div><strong>Production Deployment</strong><span>Guide v1.0</span></div></div>
+      <nav class="sidebar__nav"><p class="nav-label">Этапы</p><a href="index.html">Stage 2 · Deployment</a><a href="stage-3-ci-cd.html">Stage 3 · CI/CD</a><a href="stage-4-observability.html">Stage 4 · Observability</a><a href="stage-5-cloud.html">Stage 5 · Cloud</a><a href="stage-6-kubernetes.html">Stage 6 · Kubernetes</a><a href="stage-7-architecture.html">Stage 7 · Architecture</a></nav>
+      <div class="sidebar__progress" aria-label="Прогресс курса"><div class="progress-meta"><span>Stage 4</span><span>3 недели</span></div><div class="progress-bar"><span style="width:64%"></span></div><p>Переход Middle → Senior через production-практику.</p></div>
+    </aside>
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Roadmap</a><span>/</span><span>Stage 4</span><span>/</span><span>Observability</span></nav>
+      <header class="doc-hero" id="overview"><span class="badge badge--blue">Stage 4</span><h1>Observability</h1><p class="lead">Добавьте структурированные логи, метрики, dashboards и distributed tracing, чтобы сервис можно было диагностировать как production-систему.</p><div class="hero-grid" aria-label="Ключевые параметры"><article class="metric-card"><span>Длительность</span><strong>3 недели</strong></article><article class="metric-card"><span>Формат</span><strong>Практика + runbooks</strong></article><article class="metric-card"><span>Выход</span><strong>Production capability</strong></article></div></header>
+      <section class="doc-section" id="module-1">
+        <div class="section-heading"><span class="badge badge--blue">Stage 4</span><h2>4.1 Logging</h2><p>Каждый запрос должен иметь request_id, user_id и latency. Используйте JSON logging, correlation IDs, structlog или loguru.</p></div>
+        <div class="card-grid"><article class="card"><h3>Единый формат логов</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>request_id проходит через все слои</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Ошибки содержат контекст без секретов</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-2">
+        <div class="section-heading"><span class="badge badge--blue">Stage 4</span><h2>4.2 Metrics</h2><p>Prometheus-метрики должны показывать requests/sec, errors/sec, latency, CPU и memory. Разберите Counter, Gauge, Histogram и Summary.</p></div>
+        <div class="card-grid"><article class="card"><h3>Метрики доступны на /metrics</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Latency хранится в histogram buckets</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Ошибки отделены по endpoint/status</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-3">
+        <div class="section-heading"><span class="badge badge--blue">Stage 4</span><h2>4.3 Grafana</h2><p>Соберите dashboards для API, database, Redis и server.</p></div>
+        <div class="card-grid"><article class="card"><h3>SLO-панель для API</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>DB latency и slow queries</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Redis memory и hit rate</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-4">
+        <div class="section-heading"><span class="badge badge--blue">Stage 4</span><h2>4.4 Tracing</h2><p>OpenTelemetry и Jaeger должны показывать путь HTTP → FastAPI → Redis → PostgreSQL.</p></div>
+        <div class="card-grid"><article class="card"><h3>trace_id связан с логами</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Спаны есть для DB и cache</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Медленные запросы видны в Jaeger</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+
+      <section class="doc-section" id="deep-dive">
+        <div class="section-heading"><span class="badge badge--blue">Практический разбор</span><h2>Три сигнала production-сервиса</h2><p>Observability строится вокруг логов, метрик и трассировок. Вместе они отвечают на вопросы: что произошло, насколько часто происходит и где именно возникла задержка.</p></div>
+        <div class="card-grid"><article class="card"><h3>Logs</h3><p>Пишите структурированные JSON-события с request_id, user_id, route, status_code, latency_ms и error_type. Не логируйте токены, пароли и персональные данные без необходимости.</p></article><article class="card"><h3>Metrics</h3><p>Выделите RED-метрики для API: rate, errors, duration. Для инфраструктуры добавьте CPU, memory, disk, network и database pool usage.</p></article><article class="card"><h3>Traces</h3><p>Создавайте spans для HTTP handler, SQL query, Redis call и внешних API. trace_id должен попадать в логи, чтобы связывать события и трассы.</p></article><article class="card"><h3>Alerts</h3><p>Алерт должен описывать пользовательский impact: рост 5xx, p95 latency выше SLO, отсутствие backup, заполнение диска или недоступность healthcheck.</p></article></div>
+        <div class="code-window" data-code-block><div class="code-window__bar"><span>log event</span><button type="button" data-copy>Copy</button></div><pre><code>{
+  "level": "info",
+  "event": "request_finished",
+  "request_id": "req_01J...",
+  "user_id": "usr_42",
+  "route": "/api/projects",
+  "status_code": 200,
+  "latency_ms": 37
+}</code></pre></div>
+      </section>
+
+      <section class="doc-section" id="deliverables"><div class="section-heading"><span class="badge badge--green">Готовность</span><h2>Definition of Done</h2><p>Этап считается закрытым, когда выполнены практические критерии и результат можно показать в репозитории или инфраструктуре.</p></div><div class="checklist"><label><input type="checkbox"> JSON logs внедрены</label><label><input type="checkbox"> Prometheus собирает метрики</label><label><input type="checkbox"> Grafana показывает API/DB/Redis/Server</label><label><input type="checkbox"> Jaeger отображает end-to-end trace</label></div></section>
+      <footer class="doc-footer"><p><a href="index.html">← Вернуться к Production Deployment</a></p></footer>
+    </main>
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">4.1 Logging</a><a href="#module-2">4.2 Metrics</a><a href="#module-3">4.3 Grafana</a><a href="#module-4">4.4 Tracing</a><a href="#deep-dive">Практический разбор</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
+  </div>
+  <div class="overlay" data-overlay hidden></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

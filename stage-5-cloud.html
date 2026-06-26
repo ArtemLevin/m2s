@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Engineering — Production Deployment Guide</title>
+  <meta name="description" content="Документация этапа Cloud Engineering: Перенесите проект с VPS в AWS и разберите базовые building blocks: compute, storage, network и security." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle><span aria-hidden="true">☰</span> Навигация</button>
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand"><div class="brand__mark" aria-hidden="true">PD</div><div><strong>Production Deployment</strong><span>Guide v1.0</span></div></div>
+      <nav class="sidebar__nav"><p class="nav-label">Этапы</p><a href="index.html">Stage 2 · Deployment</a><a href="stage-3-ci-cd.html">Stage 3 · CI/CD</a><a href="stage-4-observability.html">Stage 4 · Observability</a><a href="stage-5-cloud.html">Stage 5 · Cloud</a><a href="stage-6-kubernetes.html">Stage 6 · Kubernetes</a><a href="stage-7-architecture.html">Stage 7 · Architecture</a></nav>
+      <div class="sidebar__progress" aria-label="Прогресс курса"><div class="progress-meta"><span>Stage 5</span><span>4–5 недель</span></div><div class="progress-bar"><span style="width:64%"></span></div><p>Переход Middle → Senior через production-практику.</p></div>
+    </aside>
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Roadmap</a><span>/</span><span>Stage 5</span><span>/</span><span>Cloud Engineering</span></nav>
+      <header class="doc-hero" id="overview"><span class="badge badge--green">Stage 5</span><h1>Cloud Engineering</h1><p class="lead">Перенесите проект с VPS в AWS и разберите базовые building blocks: compute, storage, network и security.</p><div class="hero-grid" aria-label="Ключевые параметры"><article class="metric-card"><span>Длительность</span><strong>4–5 недель</strong></article><article class="metric-card"><span>Формат</span><strong>Практика + runbooks</strong></article><article class="metric-card"><span>Выход</span><strong>Production capability</strong></article></div></header>
+      <section class="doc-section" id="module-1">
+        <div class="section-heading"><span class="badge badge--green">Stage 5</span><h2>Compute</h2><p>EC2 и Auto Scaling: образы, user data, security updates, instance profiles и горизонтальное масштабирование.</p></div>
+        <div class="card-grid"><article class="card"><h3>Поднять EC2 из clean image</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Настроить Auto Scaling policy</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Подключить instance role</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-2">
+        <div class="section-heading"><span class="badge badge--green">Stage 5</span><h2>Storage</h2><p>S3 для файлового хранилища, backup-артефактов и lifecycle policies.</p></div>
+        <div class="card-grid"><article class="card"><h3>Private bucket по умолчанию</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Presigned URLs для загрузок</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Lifecycle для старых объектов</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-3">
+        <div class="section-heading"><span class="badge badge--green">Stage 5</span><h2>Network</h2><p>VPC, subnet, route tables, NAT/security boundaries.</p></div>
+        <div class="card-grid"><article class="card"><h3>Public/private subnets</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Security Groups по least privilege</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Понимание route tables</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-4">
+        <div class="section-heading"><span class="badge badge--green">Stage 5</span><h2>Security</h2><p>IAM и Security Groups должны ограничивать доступ по ролям и минимальным привилегиям.</p></div>
+        <div class="card-grid"><article class="card"><h3>Нет long-lived ключей в коде</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>IAM policies scoped down</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>SSH/RDS доступ ограничен</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+
+      <section class="doc-section" id="deep-dive">
+        <div class="section-heading"><span class="badge badge--green">Практический разбор</span><h2>Миграция с VPS в AWS без потери инженерной дисциплины</h2><p>Cloud не отменяет production-baseline. Те же требования к секретам, логам, backup, healthcheck и rollback должны быть сохранены, но теперь выражены через managed-сервисы и IAM.</p></div>
+        <table class="doc-table"><thead><tr><th>Область</th><th>Решение для старта</th><th>Что важно контролировать</th></tr></thead><tbody><tr><td>Compute</td><td>EC2 + systemd или Docker Compose</td><td>AMI, patching, instance role, autoscaling</td></tr><tr><td>Database</td><td>RDS PostgreSQL</td><td>backup window, maintenance window, encryption</td></tr><tr><td>Files</td><td>S3 private bucket</td><td>bucket policy, lifecycle, presigned URLs</td></tr><tr><td>Network</td><td>VPC with public/private subnets</td><td>route tables, NAT, security groups</td></tr><tr><td>Secrets</td><td>SSM Parameter Store или Secrets Manager</td><td>rotation, access audit, least privilege</td></tr></tbody></table>
+        <div class="alert alert--info"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><div><strong>Практика</strong><p>Сначала повторите текущую VPS-архитектуру на EC2, затем постепенно заменяйте части managed-сервисами: S3 для файлов, RDS для PostgreSQL, CloudWatch/Prometheus для наблюдаемости.</p></div></div>
+      </section>
+
+      <section class="doc-section" id="deliverables"><div class="section-heading"><span class="badge badge--green">Готовность</span><h2>Definition of Done</h2><p>Этап считается закрытым, когда выполнены практические критерии и результат можно показать в репозитории или инфраструктуре.</p></div><div class="checklist"><label><input type="checkbox"> Проект работает в AWS</label><label><input type="checkbox"> Файлы вынесены в S3</label><label><input type="checkbox"> Сеть разделена на public/private зоны</label><label><input type="checkbox"> IAM настроен по least privilege</label></div></section>
+      <footer class="doc-footer"><p><a href="index.html">← Вернуться к Production Deployment</a></p></footer>
+    </main>
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">Compute</a><a href="#module-2">Storage</a><a href="#module-3">Network</a><a href="#module-4">Security</a><a href="#deep-dive">Практический разбор</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
+  </div>
+  <div class="overlay" data-overlay hidden></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
