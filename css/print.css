@@ -1,0 +1,6 @@
+@media print {
+  body { background: #fff; color: #111; }
+  .sidebar, .rightbar, .mobile-menu, .overlay { display: none !important; }
+  .docs-shell { display: block; max-width: none; }
+  p, .doc-table td { color: #333; }
+}

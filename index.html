@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Production Deployment Guide</title>
+  <meta name="description" content="Профессиональная документация курса Production Deployment: Linux, systemd, Docker, Nginx и PostgreSQL для production." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle>
+    <span aria-hidden="true">☰</span>
+    Навигация
+  </button>
+
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">PD</div>
+        <div>
+          <strong>Production Deployment</strong>
+          <span>Guide v1.0</span>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <p class="nav-label">Этап 2</p>
+        <a class="is-active" href="#overview">Обзор</a>
+        <a href="#linux">2.1 Linux</a>
+        <a href="#systemd">2.2 Systemd</a>
+        <a href="#docker">2.3 Docker</a>
+        <a href="#nginx">2.4 Nginx</a>
+        <a href="#postgres">2.5 PostgreSQL</a>
+        <a href="#practice">Практика</a>
+        <p class="nav-label nav-label--spaced">Оставшиеся этапы</p>
+        <a href="stage-3-ci-cd.html">3 · CI/CD</a>
+        <a href="stage-4-observability.html">4 · Observability</a>
+        <a href="stage-5-cloud.html">5 · Cloud Engineering</a>
+        <a href="stage-6-kubernetes.html">6 · Kubernetes</a>
+        <a href="stage-7-architecture.html">7 · Архитектура</a>
+      </nav>
+
+      <div class="sidebar__progress" aria-label="Прогресс курса">
+        <div class="progress-meta"><span>Этап 2</span><span>34%</span></div>
+        <div class="progress-bar"><span style="width:34%"></span></div>
+        <p>Production Deployment · 3–4 недели</p>
+      </div>
+    </aside>
+
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="#">Roadmap</a>
+        <span>/</span>
+        <a href="#">Stage 2</a>
+        <span>/</span>
+        <span>Production Deployment</span>
+      </nav>
+
+      <header class="doc-hero" id="overview">
+        <span class="badge badge--purple">Документация курса</span>
+        <h1>Production Deployment Guide</h1>
+        <p class="lead">Практический этап, который переводит локальный FastAPI-проект в production: Docker, VPS, HTTPS, Nginx, systemd и PostgreSQL с эксплуатационным мышлением.</p>
+        <div class="hero-grid" aria-label="Ключевые параметры этапа">
+          <article class="metric-card"><span>Длительность</span><strong>3–4 недели</strong></article>
+          <article class="metric-card"><span>Фокус</span><strong>VPS → HTTPS → Production</strong></article>
+          <article class="metric-card"><span>Результат</span><strong>Самостоятельный деплой</strong></article>
+        </div>
+      </header>
+
+      <section class="doc-section" id="linux">
+        <div class="section-heading">
+          <span class="badge badge--blue">Модуль 2.1</span>
+          <h2>Linux для Production</h2>
+          <p>Цель — понимать Linux глазами инженера эксплуатации: где лежит конфигурация, как устроены права, какие процессы запущены и что происходит с сетью.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card"><h3>Файловая система</h3><p><code>/etc</code>, <code>/var</code>, <code>/opt</code>, <code>/home</code>, <code>/proc</code>, <code>/sys</code></p></article>
+          <article class="card"><h3>Пользователи</h3><p><code>useradd</code>, <code>usermod</code>, <code>sudo</code>, <code>groups</code></p></article>
+          <article class="card"><h3>Права</h3><p><code>chmod</code>, <code>chown</code>, <code>umask</code></p></article>
+          <article class="card"><h3>Процессы и сеть</h3><p><code>ps</code>, <code>top</code>, <code>ss</code>, <code>ip</code>, <code>ufw</code></p></article>
+        </div>
+
+        <div class="alert alert--info">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <div><strong>Практика</strong><p>Поднять Ubuntu VPS, отключить root login, настроить SSH keys, fail2ban, ufw и automatic updates.</p></div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="systemd">
+        <div class="section-heading">
+          <span class="badge badge--blue">Модуль 2.2</span>
+          <h2>Systemd</h2>
+          <p>Запустите приложение без Docker, как управляемый сервис с автоматическим рестартом и логами в journalctl.</p>
+        </div>
+
+        <div class="code-window" data-code-block>
+          <div class="code-window__bar"><span>fastapi.service</span><button type="button" data-copy>Copy</button></div>
+          <pre><code>[Unit]
+Description=FastAPI App
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/fastapi-app
+ExecStart=/usr/bin/python main.py
+Restart=always
+RestartSec=5
+User=app
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+        </div>
+      </section>
+
+      <section class="doc-section" id="docker">
+        <div class="section-heading">
+          <span class="badge badge--green">Модуль 2.3</span>
+          <h2>Docker Production</h2>
+          <p>Соберите минимальные образы, настройте healthcheck, volumes, networks, secrets и resource limits.</p>
+        </div>
+
+        <div class="timeline" aria-label="Docker production workflow">
+          <article><span>01</span><div><h3>Multi-stage build</h3><p>Отделить сборку зависимостей от runtime-слоя.</p></div></article>
+          <article><span>02</span><div><h3>Compose stack</h3><p>FastAPI, PostgreSQL и Redis в одной изолированной сети.</p></div></article>
+          <article><span>03</span><div><h3>Health & limits</h3><p>Проверки живости, лимиты CPU/RAM и контролируемые рестарты.</p></div></article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="nginx">
+        <div class="section-heading">
+          <span class="badge badge--amber">Модуль 2.4</span>
+          <h2>Nginx Production</h2>
+          <p>Настройте reverse proxy не только как прокладку, а как слой безопасности, сжатия, rate limiting и отдачи static files.</p>
+        </div>
+
+        <table class="doc-table">
+          <thead><tr><th>Функция</th><th>Что изучить</th><th>Критерий готовности</th></tr></thead>
+          <tbody>
+            <tr><td>TLS</td><td>Let's Encrypt</td><td>HTTPS работает без mixed content</td></tr>
+            <tr><td>Security</td><td>X-Frame-Options, X-Content-Type-Options</td><td>Базовые headers присутствуют</td></tr>
+            <tr><td>Rate limiting</td><td><code>limit_req</code></td><td>API защищён от всплесков</td></tr>
+            <tr><td>Performance</td><td>Gzip, caching, static files</td><td>Статика отдаётся Nginx</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="doc-section" id="postgres">
+        <div class="section-heading">
+          <span class="badge badge--red">Модуль 2.5</span>
+          <h2>PostgreSQL Production</h2>
+          <p>Научитесь работать с резервными копиями, индексами и реальным анализом запросов на объёме данных.</p>
+        </div>
+
+        <div class="accordion" data-accordion>
+          <button type="button" aria-expanded="true">Backup и restore</button>
+          <div><p><code>pg_dump</code>, <code>pg_restore</code>, регулярные проверки восстановления и отдельное хранение backup-файлов.</p></div>
+          <button type="button" aria-expanded="false">Индексы</button>
+          <div hidden><p><code>btree</code>, <code>gin</code>, <code>gist</code> и выбор индекса под конкретный тип запроса.</p></div>
+          <button type="button" aria-expanded="false">Explain Analyze</button>
+          <div hidden><p>Профилирование запросов через <code>EXPLAIN ANALYZE</code> на базе с 1 млн записей.</p></div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="practice">
+        <div class="section-heading">
+          <span class="badge badge--purple">Финальная схема</span>
+          <h2>Путь деплоя</h2>
+          <p>Минималистичная outline-схема показывает целевую траекторию этапа без растровых изображений.</p>
+        </div>
+
+        <div class="diagram" role="img" aria-label="Локальный проект переходит в Docker, затем VPS, HTTPS и Production">
+          <svg viewBox="0 0 900 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1l8 4-8 4" stroke="currentColor" stroke-width="1.6" fill="none"/></marker></defs>
+            <g class="node"><rect x="20" y="50" width="145" height="70" rx="14"/><text x="92" y="90">Local</text></g>
+            <g class="node"><rect x="205" y="50" width="145" height="70" rx="14"/><text x="277" y="90">Docker</text></g>
+            <g class="node"><rect x="390" y="50" width="145" height="70" rx="14"/><text x="462" y="90">VPS</text></g>
+            <g class="node"><rect x="575" y="50" width="145" height="70" rx="14"/><text x="647" y="90">HTTPS</text></g>
+            <g class="node"><rect x="760" y="50" width="120" height="70" rx="14"/><text x="820" y="90">Prod</text></g>
+            <path class="edge" d="M165 85h40M350 85h40M535 85h40M720 85h40" marker-end="url(#arrow)"/>
+          </svg>
+        </div>
+
+        <div class="checklist">
+          <label><input type="checkbox"> VPS поднят и защищён</label>
+          <label><input type="checkbox"> systemd-сервис запускает приложение</label>
+          <label><input type="checkbox"> Docker Compose содержит FastAPI, PostgreSQL, Redis</label>
+          <label><input type="checkbox"> Nginx отдаёт HTTPS и security headers</label>
+          <label><input type="checkbox"> PostgreSQL backup восстановлен на тестовой базе</label>
+        </div>
+      </section>
+
+
+      <section class="doc-section" id="next-stages">
+        <div class="section-heading">
+          <span class="badge badge--purple">Roadmap</span>
+          <h2>Оставшиеся этапы</h2>
+          <p>После Production Deployment переходите к автоматизации поставки, наблюдаемости, cloud, Kubernetes и архитектурному треку.</p>
+        </div>
+        <div class="card-grid">
+          <a class="card card-link" href="stage-3-ci-cd.html"><h3>Этап 3 · CI/CD</h3><p>GitHub Actions, registry, deployment pipeline, blue-green, rolling update, canary и rollback.</p></a>
+          <a class="card card-link" href="stage-4-observability.html"><h3>Этап 4 · Observability</h3><p>JSON logging, correlation IDs, Prometheus, Grafana, OpenTelemetry и Jaeger.</p></a>
+          <a class="card card-link" href="stage-5-cloud.html"><h3>Этап 5 · Cloud Engineering</h3><p>AWS EC2, Auto Scaling, S3, VPC, subnets, IAM и Security Groups.</p></a>
+          <a class="card card-link" href="stage-6-kubernetes.html"><h3>Этап 6 · Kubernetes</h3><p>Core primitives, Helm, production probes/limits/HPA и GitOps через ArgoCD или FluxCD.</p></a>
+          <a class="card card-link" href="stage-7-architecture.html"><h3>Этап 7 · Архитектура</h3><p>Patterns, messaging, data, reliability, CAP theorem и event-driven architecture.</p></a>
+        </div>
+      </section>
+
+      <footer class="doc-footer">
+        <p>Production Deployment Guide создан для длительного чтения и практики: минимум шума, максимум инженерного контекста.</p>
+      </footer>
+    </main>
+
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки">
+      <div class="rightbar__panel">
+        <p class="nav-label">На странице</p>
+        <a href="#overview">Обзор</a>
+        <a href="#linux">Linux</a>
+        <a href="#systemd">Systemd</a>
+        <a href="#docker">Docker</a>
+        <a href="#nginx">Nginx</a>
+        <a href="#postgres">PostgreSQL</a>
+        <a href="#next-stages">Оставшиеся этапы</a>
+      </div>
+      <div class="rightbar__panel">
+        <p class="nav-label">Прогресс чтения</p>
+        <div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div>
+        <p class="muted">Ориентир: 35 минут на чтение, 3–4 недели на практику.</p>
+      </div>
+      <div class="rightbar__panel notes">
+        <p class="nav-label">Заметка</p>
+        <p>Не переходите к Kubernetes, пока не умеете уверенно деплоить и диагностировать сервис на VPS.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="overlay" data-overlay hidden></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
