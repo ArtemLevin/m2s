@@ -38,10 +38,34 @@
         <div class="section-heading"><span class="badge badge--amber">Stage 6</span><h2>6.4 GitOps</h2><p>ArgoCD или FluxCD полностью автоматизируют деплой из Git.</p></div>
         <div class="card-grid"><article class="card"><h3>Git — source of truth</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Drift виден в UI</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Rollback через git revert</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
       </section>
+
+      <section class="doc-section" id="deep-dive">
+        <div class="section-heading"><span class="badge badge--amber">Практический разбор</span><h2>Что значит production-ready workload</h2><p>Kubernetes-проект считается зрелым не когда Pod запустился, а когда rollout управляем, ресурсы ограничены, конфигурация отделена от image, а Git отражает желаемое состояние cluster.</p></div>
+        <div class="code-window" data-code-block><div class="code-window__bar"><span>deployment.yaml</span><button type="button" data-copy>Copy</button></div><pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: api
+          image: registry.example.com/app:sha
+          readinessProbe:
+            httpGet: { path: /health, port: 8000 }
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits: { cpu: "500m", memory: "512Mi" }</code></pre></div>
+        <div class="card-grid"><article class="card"><h3>Probes</h3><p>Readiness отвечает за трафик, liveness — за восстановление зависшего процесса, startup probe помогает долгому старту без ложных рестартов.</p></article><article class="card"><h3>Limits</h3><p>Requests нужны scheduler, limits защищают cluster от runaway-процессов. Начинайте с измерений, а не случайных чисел.</p></article><article class="card"><h3>Helm values</h3><p>Все отличия окружений должны быть в values: replica count, image tag, ingress host, resource profile и feature flags.</p></article><article class="card"><h3>GitOps</h3><p>ArgoCD/Flux сравнивает Git и cluster, показывает drift и позволяет откатываться через revert коммита.</p></article></div>
+      </section>
+
       <section class="doc-section" id="deliverables"><div class="section-heading"><span class="badge badge--green">Готовность</span><h2>Definition of Done</h2><p>Этап считается закрытым, когда выполнены практические критерии и результат можно показать в репозитории или инфраструктуре.</p></div><div class="checklist"><label><input type="checkbox"> FastAPI/PostgreSQL/Redis запущены в cluster</label><label><input type="checkbox"> Helm chart готов</label><label><input type="checkbox"> Probes и limits настроены</label><label><input type="checkbox"> GitOps выполняет автоматический deploy</label></div></section>
       <footer class="doc-footer"><p><a href="index.html">← Вернуться к Production Deployment</a></p></footer>
     </main>
-    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">6.1 Kubernetes Core</a><a href="#module-2">6.2 Helm</a><a href="#module-3">6.3 Production Kubernetes</a><a href="#module-4">6.4 GitOps</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">6.1 Kubernetes Core</a><a href="#module-2">6.2 Helm</a><a href="#module-3">6.3 Production Kubernetes</a><a href="#module-4">6.4 GitOps</a><a href="#deep-dive">Практический разбор</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
   </div>
   <div class="overlay" data-overlay hidden></div>
   <script src="js/main.js"></script>

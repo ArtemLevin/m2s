@@ -194,6 +194,24 @@ WantedBy=multi-user.target</code></pre>
       </section>
 
 
+      <section class="doc-section" id="study-plan">
+        <div class="section-heading">
+          <span class="badge badge--blue">Учебный маршрут</span>
+          <h2>Как проходить Production Deployment</h2>
+          <p>Этап лучше проходить как инженерный спринт: сначала фиксируете исходное состояние локального приложения, затем постепенно добавляете эксплуатационные слои и документируете каждую команду в runbook.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card"><h3>Неделя 1 · VPS и Linux baseline</h3><p>Поднимите чистую Ubuntu, создайте отдельного пользователя, запретите root login, включите firewall, fail2ban и unattended upgrades. Результат — защищённый сервер, к которому можно подключаться только по SSH key.</p></article>
+          <article class="card"><h3>Неделя 2 · systemd и bare-metal запуск</h3><p>Запустите FastAPI без Docker, опишите unit-файл, проверьте restart policy, логи через journalctl и корректное завершение процесса по SIGTERM.</p></article>
+          <article class="card"><h3>Неделя 3 · Docker stack</h3><p>Перенесите приложение в Docker Compose, добавьте PostgreSQL, Redis, healthcheck, named volumes, isolated networks и ограничения ресурсов.</p></article>
+          <article class="card"><h3>Неделя 4 · Nginx, HTTPS и база</h3><p>Подключите домен, TLS, security headers, rate limiting, static files, backup PostgreSQL и проверку восстановления на отдельной базе.</p></article>
+        </div>
+        <div class="alert alert--info">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <div><strong>Ключевой артефакт</strong><p>Для каждого шага сохраняйте runbook: команды, конфиги, ожидаемый результат, способ проверки и план отката. Это превращает практику в reusable production knowledge.</p></div>
+        </div>
+      </section>
+
       <section class="doc-section" id="next-stages">
         <div class="section-heading">
           <span class="badge badge--purple">Roadmap</span>
@@ -223,6 +241,7 @@ WantedBy=multi-user.target</code></pre>
         <a href="#docker">Docker</a>
         <a href="#nginx">Nginx</a>
         <a href="#postgres">PostgreSQL</a>
+        <a href="#study-plan">Учебный маршрут</a>
         <a href="#next-stages">Оставшиеся этапы</a>
       </div>
       <div class="rightbar__panel">
