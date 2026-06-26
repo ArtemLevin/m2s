@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Middle to Senior Backend — Roadmap</title>
+  <meta name="description" content="Production-ready roadmap для Python backend инженера: Linux, Docker, Nginx, CI/CD, observability, AWS, Kubernetes и архитектура." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="logo" href="#top">M2S</a>
+      <div class="nav__links">
+        <a href="#roadmap">Roadmap</a>
+        <a href="#project">Проект</a>
+        <a href="#checklist">Checklist</a>
+      </div>
+    </nav>
+
+    <section id="top" class="hero__content">
+      <p class="eyebrow">Middle Python → Senior Backend → Production Engineer → Solution Architect</p>
+      <h1>Прокачайте backend-навыки через один production-ready SaaS</h1>
+      <p class="hero__lead">Практический план на 6–9 месяцев: деплой на VPS, CI/CD, мониторинг, cloud, Kubernetes и архитектурные решения вокруг реального FastAPI-проекта.</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#roadmap">Изучить этапы</a>
+        <a class="button button--ghost" href="#project">Финальный проект</a>
+      </div>
+      <div class="stats" aria-label="Ключевые параметры обучения">
+        <div><strong>10–15</strong><span>часов в неделю</span></div>
+        <div><strong>6–9</strong><span>месяцев практики</span></div>
+        <div><strong>1</strong><span>сквозной SaaS-проект</span></div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section intro">
+      <div>
+        <p class="eyebrow">Для кого</p>
+        <h2>Не Junior-трек, а путь инженера эксплуатации</h2>
+      </div>
+      <p>План рассчитан на разработчика, который уже пишет на Python, знаком с Docker, Nginx, Linux и PostgreSQL. Цель — научиться не только разрабатывать API, но и проектировать, разворачивать и сопровождать сервисы в production.</p>
+    </section>
+
+    <section id="roadmap" class="section">
+      <div class="section__heading">
+        <p class="eyebrow">Roadmap</p>
+        <h2>Этапы обучения</h2>
+      </div>
+      <div class="timeline">
+        <article class="card card--highlight">
+          <span class="card__badge">Этап 2 · 3–4 недели</span>
+          <h3>Production Deployment</h3>
+          <p>Путь от локального FastAPI-проекта до production: Docker, VPS, HTTPS, systemd, Nginx и PostgreSQL.</p>
+          <ul>
+            <li>Linux: filesystem, users, permissions, processes, network</li>
+            <li>Systemd-сервис и journalctl</li>
+            <li>Docker Compose: FastAPI, PostgreSQL, Redis</li>
+            <li>Nginx: TLS, headers, rate limiting, gzip, caching</li>
+            <li>PostgreSQL: backup, indexes, EXPLAIN ANALYZE</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="card__badge">Этап 3 · 2–3 недели</span>
+          <h3>CI/CD</h3>
+          <p>Автоматизируйте путь от push до деплоя на VPS без простоя.</p>
+          <ul>
+            <li>GitHub Actions: lint, tests, build, docker push</li>
+            <li>Secrets, artifacts, reusable workflows</li>
+            <li>Blue-green, rolling update, canary, rollback</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="card__badge">Этап 4 · 3 недели</span>
+          <h3>Observability</h3>
+          <p>Уровень Senior начинается там, где сервис становится измеримым и диагностируемым.</p>
+          <ul>
+            <li>JSON logs, correlation IDs, structlog/loguru</li>
+            <li>Prometheus: Counter, Gauge, Histogram, Summary</li>
+            <li>Grafana dashboards: API, DB, Redis, server</li>
+            <li>OpenTelemetry + Jaeger tracing</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="card__badge">Этап 5 · 4–5 недель</span>
+          <h3>Cloud Engineering</h3>
+          <p>Перенесите проект с VPS в AWS и разберите базовые cloud-компоненты.</p>
+          <ul>
+            <li>EC2, Auto Scaling</li>
+            <li>S3</li>
+            <li>VPC, Subnet, Route Tables</li>
+            <li>IAM, Security Groups</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="card__badge">Этап 6 · 6–8 недель</span>
+          <h3>Kubernetes</h3>
+          <p>После VPS, Docker и CI/CD переходите к оркестрации и GitOps.</p>
+          <ul>
+            <li>Pod, Deployment, Service, ConfigMap, Secret, Ingress</li>
+            <li>Helm chart</li>
+            <li>HPA, limits, probes, affinity, taints, tolerations</li>
+            <li>ArgoCD или FluxCD</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="card__badge">Этап 7 · 6–12 месяцев параллельно</span>
+          <h3>Архитектура</h3>
+          <p>Переход к Senior/Lead: выбор паттернов, надежность, данные и event-driven подход.</p>
+          <ul>
+            <li>Monolith, modular monolith, microservices</li>
+            <li>RabbitMQ, Kafka</li>
+            <li>PostgreSQL, Redis, Elasticsearch</li>
+            <li>Circuit breaker, retry, rate limiting, bulkhead, CAP</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="project" class="section project">
+      <div class="project__text">
+        <p class="eyebrow">Финальный проект</p>
+        <h2>Production-система с полным контуром эксплуатации</h2>
+        <p>Соберите SaaS, который проходит весь путь: Cloudflare → Nginx → FastAPI → Redis → PostgreSQL, а также покрывается Prometheus, Grafana, Loki, Jaeger, GitHub Actions, Docker Registry и Kubernetes.</p>
+      </div>
+      <div class="architecture" aria-label="Архитектура финального проекта">
+        <span>Internet</span><span>Cloudflare</span><span>Nginx</span><span>FastAPI</span><span>Redis</span><span>PostgreSQL</span>
+      </div>
+    </section>
+
+    <section id="checklist" class="section checklist">
+      <div class="section__heading">
+        <p class="eyebrow">Checklist</p>
+        <h2>Требования к результату</h2>
+      </div>
+      <div class="checklist__grid">
+        <div class="panel">
+          <h3>Функциональные</h3>
+          <ul class="checks">
+            <li>Регистрация пользователей</li>
+            <li>JWT-аутентификация</li>
+            <li>Роли и права</li>
+            <li>REST API</li>
+            <li>Фоновые задачи</li>
+            <li>WebSocket-уведомления</li>
+            <li>Файловое хранилище</li>
+            <li>Аудит действий пользователей</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Эксплуатационные</h3>
+          <ul class="checks">
+            <li>CI/CD</li>
+            <li>Мониторинг</li>
+            <li>Алертинг</li>
+            <li>Резервное копирование</li>
+            <li>Disaster recovery</li>
+            <li>Автоматический деплой</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Сфокусируйтесь на одном проекте, измеримых результатах и регулярной практике.</p>
+  </footer>
+</body>
+</html>
