@@ -28,7 +28,9 @@
       </div>
 
       <nav class="sidebar__nav">
-        <p class="nav-label">Этап 2</p>
+        <p class="nav-label">Курс</p>
+        <a href="course-overview.html">Обзор курса</a>
+        <p class="nav-label nav-label--spaced">Этап 2</p>
         <a class="is-active" href="#overview">Обзор</a>
         <a href="#linux">2.1 Linux</a>
         <a href="#systemd">2.2 Systemd</a>
@@ -70,6 +72,20 @@
           <article class="metric-card"><span>Результат</span><strong>Самостоятельный деплой</strong></article>
         </div>
       </header>
+
+      <section class="doc-section" id="course-frame">
+        <div class="section-heading">
+          <span class="badge badge--purple">Перед стартом</span>
+          <h2>Образовательная рамка и сквозной проект</h2>
+          <p>Перед лабораторными работами зафиксируйте, для кого курс, какой FastAPI-сервис вы деплоите и какие файлы должны появиться в результате.</p>
+        </div>
+        <div class="card-grid">
+          <a class="card card-link" href="course-overview.html#audience"><h3>Для кого курс</h3><p>Junior+/Middle Python/FastAPI-разработчик, которому нужно связать backend с production-эксплуатацией.</p></a>
+          <a class="card card-link" href="course-overview.html#project"><h3>Сквозной проект</h3><p>FastAPI API, PostgreSQL, Redis, worker, static/media и папки infra/docs для runbooks.</p></a>
+          <a class="card card-link" href="course-overview.html#module-template"><h3>Шаблон модуля</h3><p>Проблема → lab → команды → проверка → диагностика → rollback → runbook → DoD.</p></a>
+          <a class="card card-link" href="course-overview.html#artifacts"><h3>Итоговые артефакты</h3><p>Конфиги, workflows, monitoring, runbooks, ADR и troubleshooting-документы.</p></a>
+        </div>
+      </section>
 
       <section class="doc-section" id="linux">
         <div class="section-heading">
@@ -194,6 +210,31 @@ WantedBy=multi-user.target</code></pre>
       </section>
 
 
+
+      <section class="doc-section" id="stage2-labs">
+        <div class="section-heading">
+          <span class="badge badge--green">Лабораторные работы</span>
+          <h2>Stage 2 как production-практикум</h2>
+          <p>Каждая лабораторная работа содержит цель, команды/конфиги, проверку, типовые ошибки, диагностику, rollback и артефакт для runbook.</p>
+        </div>
+        <div class="timeline" aria-label="Stage 2 labs">
+          <article><span>2.1</span><div><h3>VPS baseline</h3><p>Создать пользователя <code>app</code>, включить SSH only by key, запретить root login, настроить <code>ufw</code>, <code>fail2ban</code>, unattended upgrades и каталоги <code>/opt/app</code>, <code>/var/log/app</code>, <code>/etc/app</code>. Проверка: <code>ss -tulpn</code>, <code>sudo ufw status</code>, повторный вход по ключу.</p></div></article>
+          <article><span>2.2</span><div><h3>systemd service</h3><p>Запустить FastAPI из virtualenv через <code>WorkingDirectory</code>, <code>EnvironmentFile</code>, <code>User=app</code>, <code>Group=app</code>, <code>Restart=on-failure</code>. Проверка: <code>systemctl status</code>, <code>journalctl -u fastapi -f</code>, graceful shutdown по SIGTERM.</p></div></article>
+          <article><span>2.3</span><div><h3>Docker production stack</h3><p>Добавить <code>Dockerfile</code>, <code>.dockerignore</code>, <code>docker-compose.prod.yml</code>, healthcheck, named volumes, isolated network и env-файл с секретами. Диагностика: <code>docker ps</code>, <code>docker logs</code>, <code>docker inspect</code>, <code>docker stats</code>.</p></div></article>
+          <article><span>2.4</span><div><h3>Nginx + HTTPS</h3><p>Настроить reverse proxy, security headers, <code>client_max_body_size</code>, gzip, static/media, rate limiting для <code>/api/</code>, Let's Encrypt renewal и сценарий диагностики 502 через upstream logs.</p></div></article>
+          <article><span>2.5</span><div><h3>PostgreSQL backup/restore</h3><p>Настроить <code>pg_dump</code>, <code>pg_restore</code>, cron или systemd timer, проверку восстановления на отдельной базе, connection pool и slow query анализ. Backup считается рабочим только после успешного restore.</p></div></article>
+        </div>
+        <div class="code-window" data-code-block><div class="code-window__bar"><span>stage-2-artifacts.txt</span><button type="button" data-copy>Copy</button></div><pre><code>docs/runbooks/vps-baseline.md
+docs/runbooks/systemd-service.md
+docs/runbooks/docker-compose-prod.md
+docs/runbooks/nginx-https.md
+docs/runbooks/postgres-backup-restore.md
+infra/systemd/fastapi.service
+infra/nginx/app.conf
+Dockerfile
+docker-compose.prod.yml</code></pre></div>
+      </section>
+
       <section class="doc-section" id="study-plan">
         <div class="section-heading">
           <span class="badge badge--blue">Учебный маршрут</span>
@@ -236,12 +277,14 @@ WantedBy=multi-user.target</code></pre>
       <div class="rightbar__panel">
         <p class="nav-label">На странице</p>
         <a href="#overview">Обзор</a>
+        <a href="#course-frame">Рамка курса</a>
         <a href="#linux">Linux</a>
         <a href="#systemd">Systemd</a>
         <a href="#docker">Docker</a>
         <a href="#nginx">Nginx</a>
         <a href="#postgres">PostgreSQL</a>
         <a href="#study-plan">Учебный маршрут</a>
+        <a href="#stage2-labs">Лабораторные работы</a>
         <a href="#next-stages">Оставшиеся этапы</a>
       </div>
       <div class="rightbar__panel">

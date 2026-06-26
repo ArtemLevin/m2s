@@ -1,6 +1,6 @@
 # Production Deployment Guide
 
-Тёмный сайт-документация для курса **Production Deployment** и оставшихся этапов roadmap. Интерфейс построен как техническая документация: левая навигация, основной документ, правое содержание, code block, callout, timeline, checklist, таблица и SVG-схема.
+Тёмный сайт-документация для практического курса **Production Deployment Guide** и оставшихся этапов roadmap. В курсе зафиксированы образовательная рамка, сквозной FastAPI-проект, шаблон лабораторной работы и проверяемые инженерные артефакты. Интерфейс построен как техническая документация: левая навигация, основной документ, правое содержание, code block, callout, timeline, checklist, таблица и SVG-схема.
 
 ## Запуск локально
 
@@ -27,6 +27,7 @@ css/
 
 ## Страницы
 
+- `course-overview.html` — образовательная рамка курса, prerequisites, сквозной проект, шаблон модуля и итоговые артефакты.
 - `index.html` — Stage 2: Production Deployment.
 - `stage-3-ci-cd.html` — Stage 3: CI/CD.
 - `stage-4-observability.html` — Stage 4: Observability.

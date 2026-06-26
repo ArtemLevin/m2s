@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Обзор курса — Production Deployment Guide</title>
+  <meta name="description" content="Образовательная рамка Production Deployment Guide: для кого курс, prerequisites, сквозной FastAPI-проект, шаблон лабораторного модуля и итоговые артефакты." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle><span aria-hidden="true">☰</span> Навигация</button>
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand"><div class="brand__mark" aria-hidden="true">PD</div><div><strong>Production Deployment</strong><span>Guide v1.0</span></div></div>
+      <nav class="sidebar__nav"><p class="nav-label">Курс</p><a class="is-active" href="course-overview.html">Обзор курса</a><a href="index.html">Stage 2 · Deployment</a><a href="stage-3-ci-cd.html">Stage 3 · CI/CD</a><a href="stage-4-observability.html">Stage 4 · Observability</a><a href="stage-5-cloud.html">Stage 5 · Cloud</a><a href="stage-6-kubernetes.html">Stage 6 · Kubernetes</a><a href="stage-7-architecture.html">Stage 7 · Architecture</a></nav>
+      <div class="sidebar__progress" aria-label="Прогресс курса"><div class="progress-meta"><span>Overview</span><span>Start here</span></div><div class="progress-bar"><span style="width:12%"></span></div><p>Сначала зафиксируйте цель, проект и артефакты.</p></div>
+    </aside>
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Roadmap</a><span>/</span><span>Обзор курса</span></nav>
+      <header class="doc-hero" id="overview"><span class="badge badge--purple">Course frame</span><h1>Production Deployment Guide как инженерный практикум</h1><p class="lead">Курс рассчитан на Python/FastAPI-разработчика уровня Junior+/Middle, который уже умеет писать backend, но хочет самостоятельно выводить сервис в production, сопровождать его и объяснять инженерные решения.</p><div class="hero-grid"><article class="metric-card"><span>Формат</span><strong>Лабораторные работы</strong></article><article class="metric-card"><span>Главный артефакт</span><strong>Runbook + configs</strong></article><article class="metric-card"><span>Итог</span><strong>Production-like SaaS</strong></article></div></header>
+
+      <section class="doc-section" id="audience"><div class="section-heading"><span class="badge badge--blue">Для кого</span><h2>Кому подойдёт курс</h2><p>Материал не учит Python с нуля. Он связывает backend-разработку с эксплуатацией: серверы, деплой, безопасность, observability, rollback и документация.</p></div><div class="card-grid"><article class="card"><h3>Предварительные знания</h3><p>Python, FastAPI, базовый Git, HTTP, терминал Linux, SQLAlchemy/SQLModel или аналог ORM.</p></article><article class="card"><h3>Исходный проект</h3><p>Локальный pet-project или учебный FastAPI API, который можно постепенно довести до production-like состояния.</p></article><article class="card"><h3>Что будет на выходе</h3><p>FastAPI-сервис с PostgreSQL, Redis, Nginx, HTTPS, CI/CD, логами, метриками, backup/restore и эксплуатационной документацией.</p></article><article class="card"><h3>Что не является целью</h3><p>Курс не заменяет полноценный SRE/DevOps трек и не начинается с Kubernetes: сначала VPS, Docker, CI/CD и диагностика.</p></article></div></section>
+
+      <section class="doc-section" id="project"><div class="section-heading"><span class="badge badge--green">Сквозной проект</span><h2>Единая учебная система</h2><p>Все темы применяются к одному сервису: FastAPI API + PostgreSQL + Redis + background worker + static/media files. Это предотвращает распад курса на набор несвязанных DevOps-тем.</p></div><div class="code-window" data-code-block><div class="code-window__bar"><span>target-project.txt</span><button type="button" data-copy>Copy</button></div><pre><code>app/
+  api/
+  core/
+  db/
+  services/
+  workers/
+infra/
+  nginx/
+  systemd/
+  docker/
+  monitoring/
+docs/
+  runbooks/
+  adr/
+  incidents/</code></pre></div></section>
+
+      <section class="doc-section" id="module-template"><div class="section-heading"><span class="badge badge--amber">Шаблон модуля</span><h2>Единая структура лабораторной работы</h2><p>Каждый модуль должен вести ученика от production-проблемы к проверяемому результату, а не только перечислять тему.</p></div><table class="doc-table"><thead><tr><th>Блок</th><th>Что содержит</th><th>Зачем нужен</th></tr></thead><tbody><tr><td>Production context</td><td>Зачем это нужно в реальной эксплуатации</td><td>Связывает тему с риском или пользовательским impact</td></tr><tr><td>Lab</td><td>Пошаговая работа, команды, конфиги</td><td>Даёт воспроизводимый практический результат</td></tr><tr><td>Verification</td><td>Команды проверки и ожидаемый output</td><td>Убирает неопределённость “работает/не работает”</td></tr><tr><td>Troubleshooting</td><td>Типовые ошибки, диагностика, логи</td><td>Формирует production-мышление</td></tr><tr><td>Rollback</td><td>Как откатить изменение или восстановиться</td><td>Снижает риск и учит безопасным изменениям</td></tr><tr><td>Runbook</td><td>Что сохранить в docs/runbooks</td><td>Превращает практику в reusable knowledge</td></tr></tbody></table></section>
+
+      <section class="doc-section" id="artifacts"><div class="section-heading"><span class="badge badge--red">Артефакты</span><h2>Что должно остаться после прохождения</h2><p>Курс считается пройденным не после чтения страниц, а после появления проверяемых файлов, конфигов и operational-документов.</p></div><div class="code-window" data-code-block><div class="code-window__bar"><span>course-artifacts.txt</span><button type="button" data-copy>Copy</button></div><pre><code>docs/runbooks/vps-baseline.md
+infra/systemd/fastapi.service
+infra/nginx/app.conf
+docker-compose.prod.yml
+.github/workflows/ci.yml
+.github/workflows/deploy.yml
+monitoring/prometheus.yml
+monitoring/grafana-dashboard.json
+docs/incidents/template.md
+infra/aws/
+k8s/
+helm/
+docs/adr/
+docs/architecture/failure-modes.md</code></pre></div></section>
+      <footer class="doc-footer"><p><a href="index.html">Перейти к Stage 2 · Production Deployment →</a></p></footer>
+    </main>
+    <aside class="rightbar" aria-label="Содержание"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#audience">Для кого</a><a href="#project">Сквозной проект</a><a href="#module-template">Шаблон модуля</a><a href="#artifacts">Артефакты</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Начните курс с фиксации проекта и папки docs/runbooks.</p></div></aside>
+  </div>
+  <div class="overlay" data-overlay hidden></div><script src="js/main.js"></script>
+</body>
+</html>
