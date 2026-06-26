@@ -28,7 +28,7 @@
       </div>
 
       <nav class="sidebar__nav">
-        <p class="nav-label">Разделы</p>
+        <p class="nav-label">Этап 2</p>
         <a class="is-active" href="#overview">Обзор</a>
         <a href="#linux">2.1 Linux</a>
         <a href="#systemd">2.2 Systemd</a>
@@ -36,6 +36,12 @@
         <a href="#nginx">2.4 Nginx</a>
         <a href="#postgres">2.5 PostgreSQL</a>
         <a href="#practice">Практика</a>
+        <p class="nav-label nav-label--spaced">Оставшиеся этапы</p>
+        <a href="stage-3-ci-cd.html">3 · CI/CD</a>
+        <a href="stage-4-observability.html">4 · Observability</a>
+        <a href="stage-5-cloud.html">5 · Cloud Engineering</a>
+        <a href="stage-6-kubernetes.html">6 · Kubernetes</a>
+        <a href="stage-7-architecture.html">7 · Архитектура</a>
       </nav>
 
       <div class="sidebar__progress" aria-label="Прогресс курса">
@@ -187,6 +193,22 @@ WantedBy=multi-user.target</code></pre>
         </div>
       </section>
 
+
+      <section class="doc-section" id="next-stages">
+        <div class="section-heading">
+          <span class="badge badge--purple">Roadmap</span>
+          <h2>Оставшиеся этапы</h2>
+          <p>После Production Deployment переходите к автоматизации поставки, наблюдаемости, cloud, Kubernetes и архитектурному треку.</p>
+        </div>
+        <div class="card-grid">
+          <a class="card card-link" href="stage-3-ci-cd.html"><h3>Этап 3 · CI/CD</h3><p>GitHub Actions, registry, deployment pipeline, blue-green, rolling update, canary и rollback.</p></a>
+          <a class="card card-link" href="stage-4-observability.html"><h3>Этап 4 · Observability</h3><p>JSON logging, correlation IDs, Prometheus, Grafana, OpenTelemetry и Jaeger.</p></a>
+          <a class="card card-link" href="stage-5-cloud.html"><h3>Этап 5 · Cloud Engineering</h3><p>AWS EC2, Auto Scaling, S3, VPC, subnets, IAM и Security Groups.</p></a>
+          <a class="card card-link" href="stage-6-kubernetes.html"><h3>Этап 6 · Kubernetes</h3><p>Core primitives, Helm, production probes/limits/HPA и GitOps через ArgoCD или FluxCD.</p></a>
+          <a class="card card-link" href="stage-7-architecture.html"><h3>Этап 7 · Архитектура</h3><p>Patterns, messaging, data, reliability, CAP theorem и event-driven architecture.</p></a>
+        </div>
+      </section>
+
       <footer class="doc-footer">
         <p>Production Deployment Guide создан для длительного чтения и практики: минимум шума, максимум инженерного контекста.</p>
       </footer>
@@ -201,6 +223,7 @@ WantedBy=multi-user.target</code></pre>
         <a href="#docker">Docker</a>
         <a href="#nginx">Nginx</a>
         <a href="#postgres">PostgreSQL</a>
+        <a href="#next-stages">Оставшиеся этапы</a>
       </div>
       <div class="rightbar__panel">
         <p class="nav-label">Прогресс чтения</p>

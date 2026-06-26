@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CI/CD — Production Deployment Guide</title>
+  <meta name="description" content="Документация этапа CI/CD: Автоматизируйте путь от push до деплоя: lint, tests, docker build, registry и безопасное обновление VPS без простоя." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <button class="mobile-menu" type="button" aria-controls="sidebar" aria-expanded="false" data-menu-toggle><span aria-hidden="true">☰</span> Навигация</button>
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Навигация по документации">
+      <div class="brand"><div class="brand__mark" aria-hidden="true">PD</div><div><strong>Production Deployment</strong><span>Guide v1.0</span></div></div>
+      <nav class="sidebar__nav"><p class="nav-label">Этапы</p><a href="index.html">Stage 2 · Deployment</a><a href="stage-3-ci-cd.html">Stage 3 · CI/CD</a><a href="stage-4-observability.html">Stage 4 · Observability</a><a href="stage-5-cloud.html">Stage 5 · Cloud</a><a href="stage-6-kubernetes.html">Stage 6 · Kubernetes</a><a href="stage-7-architecture.html">Stage 7 · Architecture</a></nav>
+      <div class="sidebar__progress" aria-label="Прогресс курса"><div class="progress-meta"><span>Stage 3</span><span>2–3 недели</span></div><div class="progress-bar"><span style="width:64%"></span></div><p>Переход Middle → Senior через production-практику.</p></div>
+    </aside>
+    <main class="content" id="content">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Roadmap</a><span>/</span><span>Stage 3</span><span>/</span><span>CI/CD</span></nav>
+      <header class="doc-hero" id="overview"><span class="badge badge--purple">Stage 3</span><h1>CI/CD</h1><p class="lead">Автоматизируйте путь от push до деплоя: lint, tests, docker build, registry и безопасное обновление VPS без простоя.</p><div class="hero-grid" aria-label="Ключевые параметры"><article class="metric-card"><span>Длительность</span><strong>2–3 недели</strong></article><article class="metric-card"><span>Формат</span><strong>Практика + runbooks</strong></article><article class="metric-card"><span>Выход</span><strong>Production capability</strong></article></div></header>
+      <section class="doc-section" id="module-1">
+        <div class="section-heading"><span class="badge badge--purple">Stage 3</span><h2>3.1 GitHub Actions</h2><p>Pipeline должен запускаться на push и pull request: lint, tests, docker build и docker push. Разберите secrets, artifacts, reusable workflows и self-hosted runners.</p></div>
+        <div class="card-grid"><article class="card"><h3>Собрать workflow с отдельными jobs</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Публиковать Docker image в registry</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Хранить доступы только в GitHub Secrets</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+<section class="doc-section" id="module-2">
+        <div class="section-heading"><span class="badge badge--purple">Stage 3</span><h2>3.2 Deployment Pipeline</h2><p>Свяжите tests → build → registry → deploy VPS в единый поток. Отдельно проработайте blue-green, rolling update, canary и rollback.</p></div>
+        <div class="card-grid"><article class="card"><h3>Деплой по SSH или self-hosted runner</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Healthcheck перед переключением трафика</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article><article class="card"><h3>Rollback на предыдущий image tag</h3><p>Практический критерий: зафиксируйте результат в репозитории, README или runbook.</p></article></div>
+      </section>
+      <section class="doc-section" id="deliverables"><div class="section-heading"><span class="badge badge--green">Готовность</span><h2>Definition of Done</h2><p>Этап считается закрытым, когда выполнены практические критерии и результат можно показать в репозитории или инфраструктуре.</p></div><div class="checklist"><label><input type="checkbox"> Workflow проходит lint и tests</label><label><input type="checkbox"> Docker image публикуется после push</label><label><input type="checkbox"> Новая версия выкатывается без простоя</label><label><input type="checkbox"> Rollback занимает не более 5 минут</label></div></section>
+      <footer class="doc-footer"><p><a href="index.html">← Вернуться к Production Deployment</a></p></footer>
+    </main>
+    <aside class="rightbar" aria-label="Содержание и быстрые ссылки"><div class="rightbar__panel"><p class="nav-label">На странице</p><a href="#overview">Обзор</a><a href="#module-1">3.1 GitHub Actions</a><a href="#module-2">3.2 Deployment Pipeline</a><a href="#deliverables">Definition of Done</a></div><div class="rightbar__panel"><p class="nav-label">Прогресс чтения</p><div class="progress-bar" aria-hidden="true"><span data-reading-progress></span></div><p class="muted">Сохраняйте заметки и команды в runbook по мере прохождения.</p></div></aside>
+  </div>
+  <div class="overlay" data-overlay hidden></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

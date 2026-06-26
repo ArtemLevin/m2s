@@ -55,3 +55,6 @@ pre code { display: block; background: transparent; padding: 0; color: #dce5f5; 
 .rightbar__panel { display: grid; gap: 4px; padding: var(--space-4); }
 .notes { background: rgba(183,162,255,.06); }
 .doc-footer { border-top: 1px solid var(--border); padding: var(--space-6) 0; }
+.nav-label--spaced { margin-top: var(--space-5); }
+.card-link { display: block; color: inherit; }
+.card-link p { margin-bottom: 0; }
